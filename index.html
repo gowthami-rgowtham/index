@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Traveling Website</title>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+body{
+    background:#ffd5ca;
+    font-family:Arial, sans-serif;
+    color:#292929;
+}
+.page{
+    width:700px;
+    margin:35px auto;
+    background:#fffdf0;
+    padding:45px 55px;
+}
+
+/* === HEADER - SALTY LEFT, BOOK NOW RIGHT OREY LINE === */
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+    width:100%;
+}
+.header-left{
+    display:flex;
+    align-items:center;
+    gap:25px;
+}
+.logo{
+    font-size:12px;
+    font-weight:bold;
+}
+.menu{
+    display:flex;
+    gap:14px;
+    font-size:7px;
+    color:#777;
+}
+.menu span{
+    cursor:pointer;
+}
+.book-now{
+    padding:8px 18px;
+    border:1px solid #e8a87c;
+    border-radius:20px;
+    color:#e8a87c;
+    text-decoration:none;
+    font-size:8px;
+    font-weight:bold;
+    white-space:nowrap;
+}
+
+/* HERO */
+.hero{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    min-height:300px;
+}
+.hero-left{
+    width:50%;
+}
+.hero h1{
+    font-size:35px;
+    line-height:.98;
+    margin-top:10px;
+}
+.hero-text{
+    font-size:7px;
+    color:#999;
+    line-height:1.5;
+    width:240px;
+    margin-top:12px;
+}
+.search{
+    display:flex;
+    align-items:center;
+    width:250px;
+    height:38px;
+    background:white;
+    box-shadow:0 3px 12px #ddd;
+    border-radius:6px;
+    margin-top:15px;
+    padding:6px 8px;
+}
+.search div{
+    width:100px;
+}
+.search small{
+    font-size:6px;
+    color:#999;
+}
+.search p{
+    font-size:7px;
+    margin-top:3px;
+}
+.search button{
+    margin-left:auto;
+    width:25px;
+    height:25px;
+    border:0;
+    border-radius:50%;
+    background:#ef8064;
+    color:white;
+} 
+
+.hero-right{
+    position:relative;
+    width:220px;
+    height:220px;
+    flex-shrink:0;
+    /* background:#ffdeba; */
+    border-radius:50%;
+}
+.main-image{
+    width:220px;
+    height:220px;
+    border-radius:50%;
+    object-fit:contain;
+    object-position:bottom center;
+    position:relative;
+    z-index:2;
+}
+.head-image{
+    position:absolute;
+    width:38px;
+    height:38px;
+    object-fit:contain;
+    top:-5px;
+    left:30px;
+    z-index:3;
+}
+.passport-card{
+    position:absolute;
+    width:80px;
+    height:65px;
+    object-fit:cover;
+    left:-25px;
+    bottom:20px;
+    z-index:3;
+    border-radius:8px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.15);
+}
+
+.categories{
+    margin-top:40px;
+}
+.categories h2{
+    font-size:22px;
+}
+.category-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+.category-buttons{
+    display:flex;
+    gap:10px;
+}
+.category-buttons button{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    border:1px solid #ddd;
+    background:white;
+    font-size:22px;
+}
+.category-buttons .next{
+    background:#222;
+    color:white;
+    border:none;
+}
+.categories .small{
+    width:250px;
+    font-size:7px;
+    color:#999;
+    line-height:1.5;
+    margin-top:8px;
+}
+.category-list{
+    display:flex;
+    justify-content:space-between;
+    margin-top:18px;
+}
+.category{
+    text-align:center;
+}
+.category img{
+    width:60px;
+    height:100px;
+    border-radius:50%;
+    object-fit:cover;
+}
+.category p{
+    font-size:7px;
+    margin-top:5px;
+}
+
+.stories{
+    display:flex;
+    align-items:center;
+    gap:40px;
+    margin-top:55px;
+}
+.story-photo{
+    width:220px;
+    height:220px;
+    border-radius:50%;
+    overflow:visible;
+    flex-shrink:0;
+    position:relative;
+    /* background:#ffe8d0; */
+}
+.story-photo > img:first-child{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    border-radius:50%;
+    object-position:bottom center;
+}
+.card-600{
+    position:absolute;
+    width:70px;
+    height:auto;
+    left:-30px;
+    bottom:45px;
+    z-index:5;
+}
+.card-5000{
+    position:absolute;
+    width:70px;
+    height:auto;
+    right:-30px;
+    bottom:25px;
+    z-index:5;
+}
+.story-content{
+    flex:1;
+}
+.story-content small{
+    font-size:7px;
+    color:#ed896d;
+}
+.story-content h2{
+    font-size:22px;
+    line-height:1;
+    margin:7px 0;
+}
+.story-content p{
+    font-size:7px;
+    color:#999;
+    line-height:1.5;
+}
+.stats{
+    display:flex;
+    gap:12px;
+    margin-top:18px;
+}
+.stat{
+    background:white;
+    padding:9px;
+    width:58px;
+}
+.stat b{
+    display:block;
+    font-size:13px;
+    color:#ed896d;
+}
+.stat span{
+    font-size:6px;
+    color:#999;
+}
+
+.popular{
+    margin-top:45px;
+}
+.popular-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+.popular-head h2{
+    font-size:22px;
+    line-height:1;
+}
+.popular-arrows{
+    display:flex;
+    gap:12px;
+}
+.popular-arrows button{
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    border:1px solid #999;
+    background:white;
+    font-size:25px;
+}
+.popular-arrows button:last-child{
+    background:#222;
+    color:white;
+    border:none;
+}
+.popular-list{
+    display:flex;
+    gap:13px;
+    overflow:hidden;
+    margin-top:15px;
+}
+.card{
+    min-width:150px;
+}
+.card img{
+    width:150px;
+    height:95px;
+    object-fit:cover;
+    border-radius:8px;
+}
+.card b{
+    display:block;
+    font-size:8px;
+    margin-top:6px;
+}
+.card small{
+    font-size:6px;
+    color:#999;
+}
+.price{
+    font-size:8px;
+    margin-top:7px;
+}
+.price button{
+    float:right;
+    border:1px solid #ddd;
+    background:white;
+    border-radius:8px;
+    font-size:5px;
+    padding:4px 7px;
+}
+
+.top{
+    margin-top:55px;
+    text-align:center;
+}
+.top h2{
+    font-size:23px;
+}
+.top-description{
+    font-size:7px;
+    color:#999;
+    margin-top:6px;
+}
+.tabs{
+    display:flex;
+    justify-content:center;
+    gap:7px;
+    margin:12px 0 20px;
+}
+.tabs span{
+    font-size:6px;
+    padding:5px 10px;
+    border:1px solid #ddd;
+    border-radius:12px;
+}
+.tabs .selected{
+    background:#222;
+    color:white;
+}
+.destination{
+    display:grid;
+    grid-template-columns:1fr 1.4fr .65fr .9fr;
+    grid-template-rows:105px 105px;
+    gap:8px;
+    text-align:left;
+}
+.destination .image{
+    position:relative;
+    overflow:hidden;
+    border-radius:10px;
+}
+.destination .image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+.destination .image p{
+    position:absolute;
+    left:10px;
+    bottom:9px;
+    color:white;
+    font-size:8px;
+}
+.d1{
+    grid-column:1;
+    grid-row:1;
+} 
+.d2{
+    grid-column:2;
+    grid-row:1 / 3;
+}
+.d3{
+    grid-column:3 / 5;
+    grid-row:1;
+} 
+.d4{
+    grid-column:1;
+    grid-row:2;
+} 
+.d5{
+    grid-column:3;
+    grid-row:2;
+} 
+.d6{
+    grid-column:4;
+    grid-row:2;
+}
+
+.customer{
+    display:flex;
+    align-items:center;
+    gap:35px;
+    margin-top:55px;
+}
+.customer-photo{
+    width:200px;
+    height:320px;
+    border-radius:100px;
+    overflow:hidden;
+    flex-shrink:0;
+    background:#ff8a6a;
+}
+.customer-photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:top center;
+}
+.customer-text{
+    flex:1;
+}
+.customer-line{
+    width:30px;
+    height:4px;
+    background:#e9b66d;
+    border-radius:5px;
+    margin-bottom:8px;
+}
+.customer-text h2{
+    font-size:23px;
+    line-height:1.05;
+    margin:0 0 15px 0;
+    color:#292929;
+}
+.customer-box{
+    background:#ffffff;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 8px 30px rgba(0,0,0,0.08);
+    width:100%;
+}
+.customer-box p{
+    font-size:9px;
+    color:#888;
+    line-height:1.6;
+    margin:0;
+}
+.customer-stars{
+    color:#e9b66d;
+    font-size:12px;
+    margin-top:12px;
+    letter-spacing:2px;
+}
+.customer-box h4{
+    font-size:11px;
+    font-weight:bold;
+    margin-top:8px;
+    color:#222;
+}
+.customer-role{
+    display:block;
+    font-size:8px;
+    color:#aaa;
+    margin-top:3px;
+}
+.customer-arrows{
+    display:flex;
+    gap:7px;
+    justify-content:flex-end;
+    margin-top:15px;
+}
+.customer-arrows button{
+    width:26px;
+    height:26px;
+    border-radius:50%;
+    border:1px solid #ddd;
+    background:white;
+    font-size:14px;
+    cursor:pointer;
+}
+.customer-arrows button:last-child{
+    background:#222;
+    color:white;
+    border:none;
+}
+
+.newsletter{
+    background:#ffd77b;
+    border-radius:12px;
+    text-align:center;
+    padding:25px;
+    margin-top:55px;
+} 
+.newsletter h3{
+    font-size:14px;
+}
+.newsletter p{
+    font-size:7px;
+    margin-top:5px;
+}
+.email{
+    display:flex;
+    width:250px;
+    height:25px;
+    margin:15px auto 0;
+}
+.email input{
+    flex:1;
+    border:0;
+    padding:5px;
+    font-size:7px;
+}
+.email button{
+    width:30px;
+    border:0;
+    background:#ef8064;
+    color:white;
+}
+
+footer{
+    display:flex;
+    flex-wrap:nowrap;
+    justify-content:space-between;
+    gap:10px;margin-top:40px;
+    padding-top:15px;
+    width:100%;
+}
+footer div{
+    flex:1;
+    min-width:0;
+}
+footer b{
+    font-size:8px;
+    display:block;
+    margin-bottom:6px;
+    white-space:nowrap;
+}
+footer p{
+    font-size:6px;
+    color:#999;
+    line-height:1.8;
+    white-space:nowrap;
+    margin-top:2px;
+}
+.social-icons{
+    display: flex;
+    gap:12px;
+    margin-top:2px;
+}
+.social-img{
+    display: flex;
+    gap:15px;
+    margin-top: 20px;
+    width: 14px;
+    height: 14px;
+}
+.social{
+    width: 28px;
+    height: 28px;
+    border: 1px solid#bbb;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: #666;
+}
+</style>
+</head>
+<body>
+<div class="page">
+    <div class="header">
+        <div class="header-left">
+            <div class="logo">✈ Salty</div>
+            <div class="menu">
+                <span>Home</span>
+                <span>About us</span>
+                <span>Destinations</span>
+                <span>Tours</span>
+                <span>Blog</span>
+            </div>
+        </div>
+        <a href="#" class="book-now">Book Now →</a>
+    </div>
+
+    <section class="hero">
+        <div class="hero-left">
+            <h1>Discover the<br>Best Lovely<br>Places</h1>
+            <p class="hero-text">Plan and book your perfect trip with expert advice,
+                travel tips, destination information and inspiration from us.
+            </p>
+            <div class="search">
+                <div>
+                <small>Where</small>
+                <p>Center Point,Lo...</p>
+            </div>
+            <div>
+                <small>Date</small>
+                <p>09 March,2021</p>
+            </div>
+            <button>⌕</button>
+        </div>
+        </div>
+        <div class="hero-right">
+            <img class="main-image" src="Image(4).png">
+            <img class="head-image" src="nav.png">
+            <img class="passport-card" src="Card.png">
+        </div>
+    </section>
+
+    <section class="categories">
+        <div class="category-head">
+            <h2>Categories</h2>
+            <div class="category-buttons">
+                <button class="prev">‹</button>
+                <button class="next">›</button>
+            </div>
+        </div>
+        <p class="small">Here are lots of interesting destinations to visit, 
+            but don't be confused--they're already grouped by category.
+        </p>
+        <div class="category-list">
+            <div class="category">
+                <img src="Beach1.png"><p>Beach</p>
+            </div>
+                <div class="category">
+                    <img src="Beach2.png"><p>Desert</p>
+                </div>
+                <div class="category">
+                    <img src="Beach3.png"><p>Mountain</p>
+                </div>
+                <div class="category">
+                    <img src="Beach4.png"><p>Temple</p>
+                </div>
+                <div class="category">
+                    <img src="Beach5.png"><p>Tower</p>
+                </div>
+                <div class="category">
+                    <img src="Beach6.png"><p>Pyramid</p>
+                </div>
+        </div>
+    </section>
+    <section class="stories">
+        <div class="story-photo">
+            <img src="story.png">
+            <img class="card-600" src="card1.png">
+            <img class="card-5000" src="card2.png">
+        </div>
+        <div class="story-content">
+            <small>Our Experience</small>
+            <h2>Our Stories Have<br>Adventures</h2>
+            <p>We are experienced in bringing adventures to stay their journey,
+                 with all outdoor destinations in the world as our specialties. 
+                 Start your adventure now! Nature hs already called you!
+                </p>
+                <div class="stats">
+                    <div class="stat">
+                        <b>12K+</b>
+                        <span>Success<br>Journey</span>
+                    </div>
+                    <div class="stat">
+                        <b>16+</b>
+                        <span>Awards<br>Winning</span>
+                    </div>
+                    <div class="stat">
+                        <b>20+</b>
+                        <span>Years Of<br>Experience</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    <section class="popular">
+        <div class="popular-head">
+            <h2>Find Popular<br>Destination</h2>
+            <span class="popular-arrows">
+                <button>‹</button>
+                <button>›</button>
+            </span>
+        </div>
+        <div class="popular-list">
+            <div class="card">
+                <img src="image.png">
+                <b>Mountain Hiking Tour</b>
+                <small>Mountain trip</small>
+                <div class="price">$89<button>Book Now</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="image(1).png">
+                <b>Machu Picchu, Peru</b>
+                <small>Mountain trip</small>
+                <div class="price">$99<button>Book Now</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="image(2).png">
+                <b>The Grand Canyon, Arizona</b>
+                <small>Mountain trip</small>
+                <div class="price">$70<button>Book Now</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="image(3).png">
+                <b>Rocky Mountains</b>
+                <small>Mountain trip</small>
+                <div class="price">$90<button>Book Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="top">
+        <h2>Top Destinations</h2>
+        <p class="top-description">
+            Sost Brilliant reasons Entrada should be youur one-stop-shop!
+        </p>
+        <div class="tabs">
+            <span class="selected">London</span>
+            <span>Europe</span>
+            <span>England</span>
+            <span>Singapore</span>
+            <span>Italy</span>
+        </div>
+        <div class="destination">
+            <div class="image d1">
+                <img src="story1.png">
+                <p>Vietnam</p>
+            </div>
+                <div class="image d2">
+                    <img src="story2.png">
+                    <p>Vietnam</p>
+                </div>
+                    <div class="image d3">
+                        <img src="story3.png">
+                        <p>Vietnam</p>
+                    </div>
+                    <div class="image d4">
+                        <img src="story4.png">
+                        <p>Vietnam</p>
+                    </div>
+                    <div class="image d5">
+                        <img src="story5.png">
+                        <p>Vietnam</p>
+                    </div>
+                    <div class="image d6">
+                        <img src="story6.png">
+                        <p>Vietnam</p>
+                    </div>
+                </div>
+            </section>
+    <section class="customer">
+        <div class="customer-photo">
+            <img src="Images.png">
+        </div>
+        <div class="customer-text">
+            <div class="customer-line">
+            </div>
+            <h2>A Customer Said<br><b>About Us:</b></h2>
+            <div class="customer-box">
+                <p>Salty helped me a lot in finding the best place for our first outdoor adventure trip.
+                     They responded very quickly and gave me a detailed account of the place—its history, 
+                     as well as its best features.
+                    </p>
+                    <div class="customer-stars">
+                        ★★★★★
+                    </div>
+                    <h4>Andrew Sarma</h4>
+                    <span class="customer-role">Entrepreneur</span>
+                    <div class="customer-arrows">
+                        <button>‹</button>
+                        <button>›</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    <section class="newsletter">
+        <h3>Sign up to our newsletter</h3>
+        <p>
+            Reciev latest news,update,and many other things every week.
+        </p>
+        <div class="email">
+            <input type="email" placeholder="Enter your email">
+            <button>➤</button>
+        </div>
+    </section>
+    <footer>
+        <div>
+            <b>✈ Salty</b>
+            <p>Enjoy travelling<br>with Salty.</p>
+            <div class="social-icons">
+                <img src="ICon(2).png" class="social-img">
+                <img src="ICon.png" class="social-img">
+                <img src="ICon(1).png" class="social-img">
+        </div>
+        </div>
+        <div>
+            <b>Resources</b>
+            <p>Download</p>
+            <p>Help Center</p>
+            <p>Guide Book</p>
+            <p>APP Directory</p>
+        </div>
+        <div>
+            <b>Travelers</b>
+            <p>Why Travellers</p>
+            <p>Enterprice</p>
+            <p>Customer Stories</p>
+            <p>Instagram post</p>
+        </div>
+        <div>
+            <b>Company</b>
+            <p>Travelling</p>
+            <p>About Locato</p>
+            <p>Success</p>
+            <p>Information</p>
+        </div>
+        <div>
+            <b>Get App</b>
+            <p>App Store</p>
+            <p>Google Play Store</p>
+        </div>
+    </footer>
+</div>
+</body>
+</html>
